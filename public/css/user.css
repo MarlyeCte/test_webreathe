@@ -1,0 +1,9 @@
+.infoUser {
+    margin-top: 20px;
+}
+
+.infoUser td {
+    font-size: 20px;
+    color: rgb(0, 50, 212);
+    text-decoration: underline;
+}

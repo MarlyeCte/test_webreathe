@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Modules{% endblock %}
+
+{% block body %}
+    <section class="globalMain">
+        <h2>Crée un nouveau module</h2>
+        
+        {{ include('modules/_form.html.twig') }}
+        
+        <a class="btnAccess" href="{{ path('modules_index') }}">Retournée à la liste</a>
+    </section>
+{% endblock %}

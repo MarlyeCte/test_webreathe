@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tout les modules
+{% endblock %}
+
+{% block body %}
+	<section class="globalMain">
+		<h2>Tout les modules :</h2>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Date de Création</th>
+					<th>État</th>
+					<th>Type</th>
+					<th>Dernière Exécution</th>
+					<th>Détail</th>
+					<th>Modifications</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for module in modules %}
+					<tr>
+						<td>{{ module.name }}</td>
+						<td>{{ module.createdAt ? module.createdAt|date('Y-m-d / H:i') : '' }}</td>
+						<td>{{ module.state }}</td>
+						<td>{{ module.type }}</td>
+						<td>{{ module.lastExecution ? module.lastExecution|date('Y-m-d / H:i') : '' }}</td>
+						<td>
+							<a class="btnAccessInfo" href="{{ path('modules_show', {'id': module.id}) }}">Visualiser</a>
+						</td>
+						<td>
+							<a class="btnAccessInfo" href="{{ path('modules_edit', {'id': module.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">Aucune information à été enregistrer</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a class="btnAccess btnAccess" href="{{ path('modules_new') }}">Crée un module</a>
+	</section>
+{% endblock %}

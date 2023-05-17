@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Information du module{% endblock %}
+
+{% block body %}
+    <section class="globalMain">
+        <h2>Information du module</h2>
+        
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ module.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ module.name }}</td>
+                </tr>
+                <tr>
+                    <th>Date de Création</th>
+                    <td>{{ module.createdAt ? module.createdAt|date('Y-m-d / H:i') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>État</th>
+                    <td>{{ module.state ? 'Actif' : 'Inactif' }}</td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ module.type ? 'Rapide' : 'Lent' }}</td>
+                </tr>
+                <tr>
+                    <th>Dernière Exécution</th>
+                    <td>{{ module.lastExecution ? module.lastExecution|date('Y-m-d / H:i') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var moduleData = {
+                    state: "{{ module.state }}"
+                };
+
+                var ctx = document.getElementById('module-chart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(moduleData),
+                        datasets: [{
+                            label: 'État du Module',
+                            data: Object.values(moduleData),
+                            backgroundColor: 'rgba(0, 128, 0, 0.397)',
+                            borderColor: 'darkgreen',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        animations: {
+                        tension: {
+                            duration: 1000,
+                            easing: 'linear',
+                            from: 1,
+                            to: 0,
+                            loop: true
+                        }
+                        },
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <canvas id="module-chart"></canvas>
+        
+        <a class="btnAccess" href="{{ path('modules_index') }}">Retournée à la liste</a>
+        
+        <a class="btnAccess" href="{{ path('modules_edit', {'id': module.id}) }}">Modifier</a>
+        
+        {{ include('modules/_delete_form.html.twig') }}
+    </section>
+{% endblock %}

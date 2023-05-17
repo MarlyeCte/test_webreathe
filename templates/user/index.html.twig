@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Profil{% endblock %}
+
+{% block body %}
+
+<section class="globalMain">
+
+    <h2>Information du compte :</h2>
+
+    <table class="infoUser">
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Id</th>
+            <th>Role</th>
+        </tr>
+        <tr>
+            <td>{{app.user.name}}</td>
+            <td>{{app.user.email}}</td>
+            <td>{{app.user.id}}</td>
+            {% for unrole in app.user.roles %}
+                <td>{{unrole}}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+</section>
+
+{% endblock %}

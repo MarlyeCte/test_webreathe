@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <section class="globalMain">
+        <h2 class="mainTitle">Inscrivez-vous :</h2>
+        
+        {{ form_start(registrationForm, {method: 'post', attr: {class: 'globalForm'}}) }}
+
+            <article class="formInfo">
+                {{ form_row(registrationForm.name, {label: 'Prénom :'}) }}
+            </article>
+
+            <article class="formInfo">
+                {{ form_row(registrationForm.email, {label: 'Email :'}) }}
+            </article>
+
+            <article class="formInfo">
+                {{ form_row(registrationForm.plainPassword, {label: 'Mot de passe :'}) }}
+            </article>
+
+            <button type="submit" class="btnAccess">Inscription</button>
+
+        {{ form_end(registrationForm) }}
+    </section>
+{% endblock %}

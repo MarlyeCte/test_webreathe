@@ -1,0 +1,79 @@
+table {
+    border-collapse: collapse;
+}
+
+th {
+    padding: 12px;
+    font-size: 15px;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+}
+
+table,
+th,
+td{
+    border: 1px solid;
+}
+
+#module-chart {
+    /* width: 500px !important;
+    height: 500px !important; */
+}
+
+.btnAccess {
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(73, 73, 73);
+    padding: 5px 20px;
+    border: 1px solid black;
+    margin-top: 20px;
+    transition: all 0.1s ease-in-out;
+}
+
+.btnAccess:hover {
+    font-size: 22px;
+    color: white;
+    background-color: rgb(73, 73, 73);
+}
+
+.btnAccessInfo {
+    color: green;
+    text-decoration: none;
+}
+
+.btnAccessInfo:hover {
+    text-decoration: underline;
+}
+
+#modules div:not(
+    #modules_createdAt, 
+    #modules_createdAt_date, 
+    #modules_createdAt_time,
+    #modules_lastExecution,
+    #modules_lastExecution_date,
+    #modules_lastExecution_time) {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+#modules_createdAt,
+#modules_lastExecution {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px;
+}
+
+#modules_createdAt_date,
+#modules_createdAt_time,
+#modules_lastExecution_date,
+#modules_lastExecution_time {
+    display: inline-flex;
+    gap: 5px;
+}

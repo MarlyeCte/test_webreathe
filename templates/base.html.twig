@@ -4,16 +4,37 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/user.css') }}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
+
+        <header>
+            <h1>Test Informatique Marlye Cotrie</h1>
+            <nav class="navbar">
+
+                {% if not app.user %}
+                    <a class="navItem" href="{{path('login')}}">Connexion</a>
+                    <a class="navItem" href="{{path('register')}}">Inscription</a>
+                {% endif %}
+
+                {% if app.user %}
+                    <a class="navItem" href="{{path('user')}}">Bonjour {{app.user.name}} !</a>
+                    <a class="navItem" href="{{path('modules_index')}}">Modules</a>
+                    <a class="navItem" href="{{path('logout')}}">Déconnexion</a>
+                {% endif %}
+            </nav>
+        </header>
+
         {% block body %}{% endblock %}
     </body>
 </html>
